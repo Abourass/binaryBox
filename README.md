@@ -15,12 +15,11 @@
 
 ```html
 <body>
-  // Include a div you want your checkbox to show up within, by using the class .binaryBox
+  // Include a div you want your checkbox to show up within (using the class .binaryBox)
+  // The input you get when you process the form will have the id you used on this div
   <div id="amAnimal"
        class="binaryBox form-input"
        data-checked-value="weasel"
-       data-unchecked-value="dog"
-       data-label="What type of animal are you?"
   ></div>
 </body>
 <script src="src/binaryBox.js"></script>
@@ -32,6 +31,21 @@
 <script src="src/binaryBox.js"></script>
 <script>
   new BinaryCheck().init();
+</script>
+```
+
+## Config
+
+```html
+<script src="src/binaryBox.js"></script>
+<script>
+  const config = {
+    background: '#00a28a',
+    button: '#fff',
+    animationDuration: '.6s',
+    labelClass: 'label'
+}
+  new BinaryCheck().init(null, config);
 </script>
 ```
 
