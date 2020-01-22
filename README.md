@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> Tired of checkboxes not returning values when unselected? This is the library for you
+> Tired of checkboxes not returning values when unchecked? This is the library for you
 
 ## Include
 
