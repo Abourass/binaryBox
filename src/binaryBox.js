@@ -1,6 +1,6 @@
-class BinaryCheck {
-  init = (selector = '.binaryCheck', config = {}) => {
-    if (selector == null){selector = '.binaryCheck'}
+class BinaryBox {
+  init = (selector = '.binaryBox', config = {}) => {
+    if (selector == null){selector = '.binaryBox'}
     const elements = document.querySelectorAll(selector);
 
     const calculateMilliseconds = (seconds) => {

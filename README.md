@@ -11,16 +11,28 @@
 
 > Tired of checkboxes not returning values when unselected? This is the library for you
 
-## Install
+## Include
 
-```sh
-npm install
+```html
+<body>
+  // Include a div you want your checkbox to show up within, by using the class .binaryBox
+  <div id="amAnimal"
+       class="binaryBox form-input"
+       data-checked-value="weasel"
+       data-unchecked-value="dog"
+       data-label="What type of animal are you?"
+  ></div>
+</body>
+<script src="src/binaryBox.js"></script>
 ```
 
-## Run tests
+## Initialize
 
-```sh
-npm run test
+```html
+<script src="src/binaryBox.js"></script>
+<script>
+  new BinaryCheck().init();
+</script>
 ```
 
 ## Author
