@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Binary Boxes</title>
+  <style>
+    .label {
+      padding-right: .2rem
+    }
+    .form-input {
+      display: inline-flex;
+    }
+  </style>
+</head>
+<body>
+<div id="amAnimal"
+     class="binaryCheck form-input"
+     data-checked-value="weasel"
+     data-unchecked-value="dog"
+     data-label="What type of animal are you?"
+></div>
+</body>
+<script src="src/binaryChecks.js"></script>
+<script>
+  new BinaryCheck().init(null, {
+    background: '#00a28a',
+    button: '#fff',
+    animationDuration: '.6s',
+    labelClass: 'label'
+  });
+</script>
+</html>
