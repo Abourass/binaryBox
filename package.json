@@ -2,12 +2,10 @@
   "name": "binary-box",
   "version": "1.0.0",
   "description": "Tired of checkboxes not returning values when unselected? This is the library for you",
-  "main": "src/binaryBox.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "src/binBoxInit.js",
   "keywords": [
-    "checkbox", "switch"
+    "checkbox",
+    "switch"
   ],
   "author": "Antonio B.",
   "license": "MIT"
