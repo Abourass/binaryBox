@@ -33,9 +33,7 @@ class BinaryBox {
     .binaryCheckContainer {
       background: ${config.background || '#eaeaeb'};
       border: 1px solid ${config.background || '#eaeaeb'};
-      margin-bottom: 0;
       border-radius: 1rem;
-      vertical-align: middle;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -53,7 +51,7 @@ class BinaryBox {
       display: block;
       margin-left: 1px;
       margin-right: 1px;
-      transition: all ${calculateMilliseconds(config.animationDuration, 50 || 850)}ms linear;
+      transition: all ${config.animationDuration ? calculateMilliseconds(config.animationDuration, 50) :  300}ms linear;
     }
     
     @keyframes slideBtn-right {
@@ -73,16 +71,16 @@ class BinaryBox {
     
     .animateBtn-check {
       animation-name: slideBtn-right;
-      animation-duration: ${config.animationDuration || '1s'};
+      animation-duration: ${config.animationDuration || '.3s'};
       -webkit-animation-name: slideBtn-right;
-      -webkit-animation-duration: ${config.animationDuration || '1s'};
+      -webkit-animation-duration: ${config.animationDuration || '.3s'};
     }
     
     .animateBtn-uncheck {
       animation-name: slideBtn-left;
-      animation-duration: ${config.animationDuration || '1s'};
+      animation-duration: ${config.animationDuration || '.3s'};
       -webkit-animation-name: slideBtn-left;
-      -webkit-animation-duration: ${config.animationDuration || '1s'};
+      -webkit-animation-duration: ${config.animationDuration || '.3s'};
     }
     `;
       document.getElementsByTagName('head')[0].appendChild(styleNode);
@@ -90,14 +88,11 @@ class BinaryBox {
     const getDotBoxAndContainer = (e) => {
       let checkDot, checkBox;
       if (e.currentTarget.tagName.toLowerCase() === 'span'){
-        checkDot = e.currentTarget;
-        checkBox = checkDot.parentElement
+        checkDot = e.currentTarget; checkBox = checkDot.parentElement
       } else {
-        checkBox = e.currentTarget;
-        checkDot = checkBox.childNodes[0];
+        checkBox = e.currentTarget; checkDot = checkBox.childNodes[0];
       }
-      const containerDiv = checkBox.parentElement;
-      return {checkDot, checkBox, containerDiv}
+      return {checkDot, checkBox, containerDiv: checkBox.parentElement}
     };
 
     elements.forEach((el) => {
@@ -150,7 +145,7 @@ class BinaryBox {
 
         checkDot.removeEventListener('click', checkBox); // Remove this event listener
         checkBox.removeEventListener('click', checkBox);
-      }, calculateMilliseconds(config.animationDuration || 850))
+      }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
     };
 
     const uncheckBox = (e) => {
@@ -174,7 +169,7 @@ class BinaryBox {
 
         checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
         checkBox.removeEventListener('click', uncheckBox)
-      }, calculateMilliseconds(config.animationDuration || 850))
+      }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
     };
 
     addStylesheet();
