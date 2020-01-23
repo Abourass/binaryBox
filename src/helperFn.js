@@ -43,16 +43,16 @@ export const addStylesheet = (config) => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 34px;
-      height: 15px;
+      width: ${config.switchWidth || '34px'};
+      height: ${config.switchHeight || '15px'};
       cursor: pointer;
     }
     
     .binaryBtn {
       background: ${config.button || '#fff'};
-      border-radius: .65rem;
-      width: 16px;
-      height: 15px;
+      border-radius: ${config.dotRadius || '.65rem'};
+      width: ${config.dotWidth || '16px'};
+      height: ${config.dotHeight || '15px'};
       position: relative;
       display: block;
       margin-left: 1px;
@@ -62,11 +62,11 @@ export const addStylesheet = (config) => {
     
     @keyframes slideBtn-right {
       from {left: 0px;}
-      to {left: 16px;}
+      to {left: ${((config.switchWidth * 2) + 2) || '16'}px;}
     }
     
     @keyframes slideBtn-left {
-      from {left: 16px;}
+      from {left: ${((config.switchWidth * 2) + 2) || '16'}px;}
       to {left: 0px;}
     }
     

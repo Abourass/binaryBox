@@ -1,1 +1,393 @@
-(function () {var a={};function h(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};document.querySelectorAll(e).forEach(function(e){var a=e.id;c(e,a,t.labelClass?t.labelClass:null),g(e,a,f(e,a))});var a=function(e){var a=d(e),c=a.checkDot,i=a.checkBox,o=a.containerDiv;c.classList.add("animateBtn-check"),i.classList.add("checked"),setTimeout(function(){c.setAttribute("style","left: 16px;"),c.classList.remove("animateBtn-check"),o.childNodes.forEach(function(e){e.tagName&&"input"===e.tagName.toLowerCase()&&(e.value=o.dataset.checkedValue)}),c.addEventListener("click",n),i.addEventListener("click",n),c.removeEventListener("click",i),i.removeEventListener("click",i)},t.animationDuration?b(t.animationDuration):250)},n=function e(a){var n=d(a),c=n.checkDot,i=n.checkBox,o=n.containerDiv;c.classList.add("animateBtn-uncheck"),i.classList.remove("checked"),setTimeout(function(){c.setAttribute("style","left: 0px;"),c.classList.remove("animateBtn-uncheck"),o.childNodes.forEach(function(e){e.tagName&&"input"===e.tagName.toLowerCase()&&(o.dataset.uncheckedValue?e.value=o.dataset.uncheckedValue:e.value="")}),c.addEventListener("click",i),i.addEventListener("click",c),c.removeEventListener("click",e),i.removeEventListener("click",e)},t.animationDuration?b(t.animationDuration):250)};document.querySelectorAll(".binaryBtn, .binarySwitchContainer").forEach(function(e){return e.addEventListener("click",a)})}function i(e){return l(e)||k(e)||j()}function j(){throw new TypeError("Invalid attempt to spread non-iterable instance")}function k(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function l(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t];return n}}var b=function(e){var t,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,a=e.substring(0,e.length-1);switch(a[0]){case".":var r=a.substr(1,e.length);switch(r.length){case 1:t=parseInt("".concat(r,"00"),10);break;case 2:t=parseInt("".concat(r,"0"),10);break;case 3:t=parseInt("".concat(r),10);break;default:throw new Error("binaryBox only parses up to thousandths of a ms");}break;default:switch(a.length){case 1:t=parseInt("".concat(a,"000"),10);break;default:throw new Error("binaryBox only allows up to 9 seconds");}}return n&&(t+=n),t>50?t-50:t};var d=function(e){var t,n;return"span"===e.currentTarget.tagName.toLowerCase()?n=(t=e.currentTarget).parentElement:t=(n=e.currentTarget).childNodes[0],{checkDot:t,checkBox:n,containerDiv:n.parentElement}};var m=function(e){var t=document.createElement("style");t.textContent="\n    .binarySwitchContainer {\n      background: ".concat(e.background||"#eaeaeb",";\n      border: 1px solid ").concat(e.background||"#eaeaeb",";\n      border-radius: 1rem;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      width: 34px;\n      height: 15px;\n      cursor: pointer;\n    }\n    \n    .binaryBtn {\n      background: ").concat(e.button||"#fff",";\n      border-radius: .65rem;\n      width: 16px;\n      height: 15px;\n      position: relative;\n      display: block;\n      margin-left: 1px;\n      margin-right: 1px;\n      transition: all ").concat(e.animationDuration?b(e.animationDuration,50):300,"ms linear;\n    }\n    \n    @keyframes slideBtn-right {\n      from {left: 0px;}\n      to {left: 16px;}\n    }\n    \n    @keyframes slideBtn-left {\n      from {left: 16px;}\n      to {left: 0px;}\n    }\n    \n    .checked {\n      background: ").concat(e.checkedColor||"#00a28a !important",";\n      border: 1px solid ").concat(e.checkedColor||"#00a28a !important",";\n    }\n    \n    .animateBtn-check {\n      animation-name: slideBtn-right;\n      animation-duration: ").concat(e.animationDuration||".3s",";\n      -webkit-animation-name: slideBtn-right;\n      -webkit-animation-duration: ").concat(e.animationDuration||".3s",";\n    }\n    \n    .animateBtn-uncheck {\n      animation-name: slideBtn-left;\n      animation-duration: ").concat(e.animationDuration||".3s",";\n      -webkit-animation-name: slideBtn-left;\n      -webkit-animation-duration: ").concat(e.animationDuration||".3s",";\n    }\n    "),document.getElementsByTagName("head")[0].appendChild(t)};var c=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;if(e.dataset.label){var a,r=document.createElement("label");if(r.setAttribute("for","".concat(t)),r.textContent=e.dataset.label,n)(a=r.classList).add.apply(a,i(n));e.prepend(r)}};var f=function(e,t){var n=document.createElement("input");return n.type="hidden",n.name=e.id,n.id=t,e.dataset.uncheckedValue&&(n.value=e.dataset.uncheckedValue),n};var g=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null,a=document.createElement("div"),r=document.createElement("span");a.classList.add("binarySwitchContainer"),r.classList.add("binaryBtn"),n&&e.append(n),e.id="grabbed_".concat(t),a.appendChild(r),e.appendChild(a)};function o(e){return q(e)||p(e)||n()}function n(){throw new TypeError("Invalid attempt to spread non-iterable instance")}function p(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function q(e){if(Array.isArray(e)){for(var t=0,a=new Array(e.length);t<e.length;t++)a[t]=e[t];return a}}function s(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};document.querySelectorAll(e).forEach(function(e){var a=e.id;c(e,a,t.labelClass?t.labelClass:null);var r=f(e,a);e.insertBefore(r,e.children[1]),e.id="arrayed_".concat(a),e.childNodes.forEach(function(e){if(e.classList&&e.classList.contains("arrayChild")){var a,r=e.id,n=document.createElement("span");if(n.innerText=e.dataset.label,t.arrayLabelClass)(a=n.classList).add.apply(a,o(t.arrayLabelClass));e.append(n),g(e,r)}})});var a=function(e){var a=d(e),n=a.checkDot,i=a.checkBox,o=a.containerDiv,c=o.parentElement;n.classList.add("animateBtn-check"),i.classList.add("checked"),setTimeout(function(){n.setAttribute("style","left: 16px;"),n.classList.remove("animateBtn-check"),c.childNodes.forEach(function(e){if(e.tagName&&"input"===e.tagName.toLowerCase()){var t=e.value?JSON.parse(e.value):[];t.includes(o.dataset.checkedValue)||(t.push(o.dataset.checkedValue),e.value=JSON.stringify(t))}}),n.addEventListener("click",r),i.addEventListener("click",r),n.removeEventListener("click",i),i.removeEventListener("click",i)},t.animationDuration?b(t.animationDuration):250)},r=function e(a){var r=d(a),n=r.checkDot,i=r.checkBox,o=r.containerDiv,c=o.parentElement;n.classList.add("animateBtn-uncheck"),i.classList.remove("checked"),setTimeout(function(){n.setAttribute("style","left: 0px;"),n.classList.remove("animateBtn-uncheck"),c.childNodes.forEach(function(e){if(e.tagName&&"input"===e.tagName.toLowerCase()){var t=JSON.parse(e.value);t.includes(o.dataset.checkedValue)&&(t.splice(t.indexOf(o.dataset.checkedValue),1),e.value=JSON.stringify(t))}}),n.addEventListener("click",i),i.addEventListener("click",n),n.removeEventListener("click",e),i.removeEventListener("click",e)},t.animationDuration?b(t.animationDuration):250)};document.querySelectorAll(".binaryBtn, .binarySwitchContainer").forEach(function(e){return e.addEventListener("click",a)})}a=function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=r.arrayBoxSelector?r.arrayBoxSelector:".arrayBox",o=r.checkBoxSelector?r.checkBoxSelector:".binaryBox";m(r),document.querySelector(e)&&s(e,r),document.querySelector(o)&&h(o,r)};if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=a}else if(typeof define==="function"&&define.amd){define(function(){return a})}else{this["binBoxInit"]=a}})();
+(function () {
+// ASSET: binBoxInit.js
+var $HuqN$exports = {};
+
+function $wiIP$var$_toConsumableArray(arr) {
+  return $wiIP$var$_arrayWithoutHoles(arr) || $wiIP$var$_iterableToArray(arr) || $wiIP$var$_nonIterableSpread();
+}
+
+function $wiIP$var$_nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function $wiIP$var$_iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function $wiIP$var$_arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+var $wiIP$export$calculateMilliseconds = function calculateMilliseconds(seconds) {
+  var addMS = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var secs = seconds.substring(0, seconds.length - 1);
+  var ms;
+
+  switch (secs[0]) {
+    case '.':
+      {
+        var parsedMS = secs.substr(1, seconds.length);
+
+        switch (parsedMS.length) {
+          case 1:
+            {
+              ms = parseInt("".concat(parsedMS, "00"), 10);
+              break;
+            }
+
+          case 2:
+            {
+              ms = parseInt("".concat(parsedMS, "0"), 10);
+              break;
+            }
+
+          case 3:
+            {
+              ms = parseInt("".concat(parsedMS), 10);
+              break;
+            }
+
+          default:
+            {
+              throw new Error('binaryBox only parses up to thousandths of a ms');
+            }
+        }
+
+        break;
+      }
+
+    default:
+      {
+        switch (secs.length) {
+          case 1:
+            {
+              ms = parseInt("".concat(secs, "000"), 10);
+              break;
+            }
+
+          default:
+            {
+              throw new Error('binaryBox only allows up to 9 seconds');
+            }
+        }
+      }
+  }
+
+  if (addMS) {
+    ms += addMS;
+  }
+
+  return ms > 50 ? ms - 50 : ms;
+};
+
+var $wiIP$export$getDotBoxAndContainer = function getDotBoxAndContainer(e) {
+  var checkDot, checkBox;
+
+  if (e.currentTarget.tagName.toLowerCase() === 'span') {
+    checkDot = e.currentTarget;
+    checkBox = checkDot.parentElement;
+  } else {
+    checkBox = e.currentTarget;
+    checkDot = checkBox.childNodes[0];
+  }
+
+  return {
+    checkDot: checkDot,
+    checkBox: checkBox,
+    containerDiv: checkBox.parentElement
+  };
+};
+
+var $wiIP$export$addStylesheet = function addStylesheet(config) {
+  var styleNode = document.createElement('style');
+  styleNode.textContent = "\n    .binarySwitchContainer {\n      background: ".concat(config.background || '#eaeaeb', ";\n      border: 1px solid ").concat(config.background || '#eaeaeb', ";\n      border-radius: 1rem;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      width: ").concat(config.switchWidth || '34px', ";\n      height: ").concat(config.switchHeight || '15px', ";\n      cursor: pointer;\n    }\n    \n    .binaryBtn {\n      background: ").concat(config.button || '#fff', ";\n      border-radius: ").concat(config.dotRadius || '.65rem', ";\n      width: ").concat(config.dotWidth || '16px', ";\n      height: ").concat(config.dotHeight || '15px', ";\n      position: relative;\n      display: block;\n      margin-left: 1px;\n      margin-right: 1px;\n      transition: all ").concat(config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration, 50) : 300, "ms linear;\n    }\n    \n    @keyframes slideBtn-right {\n      from {left: 0px;}\n      to {left: ").concat(config.switchWidth * 2 + 2 || '16', "px;}\n    }\n    \n    @keyframes slideBtn-left {\n      from {left: ").concat(config.switchWidth * 2 + 2 || '16', "px;}\n      to {left: 0px;}\n    }\n    \n    .checked {\n      background: ").concat(config.checkedColor || '#00a28a !important', ";\n      border: 1px solid ").concat(config.checkedColor || '#00a28a !important', ";\n    }\n    \n    .animateBtn-check {\n      animation-name: slideBtn-right;\n      animation-duration: ").concat(config.animationDuration || '.3s', ";\n      -webkit-animation-name: slideBtn-right;\n      -webkit-animation-duration: ").concat(config.animationDuration || '.3s', ";\n    }\n    \n    .animateBtn-uncheck {\n      animation-name: slideBtn-left;\n      animation-duration: ").concat(config.animationDuration || '.3s', ";\n      -webkit-animation-name: slideBtn-left;\n      -webkit-animation-duration: ").concat(config.animationDuration || '.3s', ";\n    }\n    ");
+  document.getElementsByTagName('head')[0].appendChild(styleNode);
+};
+
+var $wiIP$export$createLabel = function createLabel(el, forID) {
+  var labelClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  if (el.dataset.label) {
+    var hiddenLabel = document.createElement('label');
+    hiddenLabel.setAttribute('for', "".concat(forID));
+    hiddenLabel.textContent = el.dataset.label;
+
+    if (labelClass) {
+      var _hiddenLabel$classLis;
+
+      (_hiddenLabel$classLis = hiddenLabel.classList).add.apply(_hiddenLabel$classLis, $wiIP$var$_toConsumableArray(labelClass));
+    }
+
+    el.prepend(hiddenLabel);
+  }
+};
+
+var $wiIP$export$createInput = function createInput(el, tempID) {
+  var hiddenInput = document.createElement('input');
+  hiddenInput.type = 'hidden';
+  hiddenInput.name = el.id;
+  hiddenInput.id = tempID;
+
+  if (el.dataset.uncheckedValue) {
+    hiddenInput.value = el.dataset.uncheckedValue;
+  }
+
+  return hiddenInput;
+};
+
+var $wiIP$export$createSwitch = function createSwitch(el, tempID) {
+  var inputEl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var checkDiv = document.createElement('div'),
+      btnSpan = document.createElement('span');
+  checkDiv.classList.add('binarySwitchContainer');
+  btnSpan.classList.add('binaryBtn');
+
+  if (inputEl) {
+    el.append(inputEl);
+  }
+
+  el.id = "grabbed_".concat(tempID);
+  checkDiv.appendChild(btnSpan);
+  el.appendChild(checkDiv);
+};
+
+function $mBHV$export$default(selector) {
+  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  document.querySelectorAll(selector).forEach(function (el) {
+    var tempID = el.id;
+    $wiIP$export$createLabel(el, tempID, config.labelClass ? config.labelClass : null);
+    $wiIP$export$createSwitch(el, tempID, $wiIP$export$createInput(el, tempID));
+  });
+
+  var checkBox = function checkBox(e) {
+    var _getDotBoxAndContaine = $wiIP$export$getDotBoxAndContainer(e),
+        checkDot = _getDotBoxAndContaine.checkDot,
+        checkBox = _getDotBoxAndContaine.checkBox,
+        containerDiv = _getDotBoxAndContaine.containerDiv;
+
+    checkDot.classList.add('animateBtn-check'); // Animate the dot (To checked)
+
+    checkBox.classList.add('checked'); // Change the background of the checkbox to show it's checked
+
+    setTimeout(function () {
+      // Start a timer to remove the animation / the event handler
+      checkDot.setAttribute('style', "left: ".concat(config.switchWidth * 2 + 2 || '16', "px;")); // Set the dot to be where the animation will end
+
+      checkDot.classList.remove('animateBtn-check'); // Stop the animation
+
+      containerDiv.childNodes.forEach(function (node) {
+        if (node.tagName && node.tagName.toLowerCase() === 'input') {
+          // Find the input we created and set it to the check value
+          node.value = containerDiv.dataset.checkedValue;
+        }
+      });
+      checkDot.addEventListener('click', uncheckBox); // Add the uncheckBox event listener
+
+      checkBox.addEventListener('click', uncheckBox);
+      checkDot.removeEventListener('click', checkBox); // Remove this event listener
+
+      checkBox.removeEventListener('click', checkBox);
+    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+  };
+
+  var uncheckBox = function uncheckBox(e) {
+    var _getDotBoxAndContaine2 = $wiIP$export$getDotBoxAndContainer(e),
+        checkDot = _getDotBoxAndContaine2.checkDot,
+        checkBox = _getDotBoxAndContaine2.checkBox,
+        containerDiv = _getDotBoxAndContaine2.containerDiv;
+
+    checkDot.classList.add('animateBtn-uncheck'); // Animate the dot (to unchecked)
+
+    checkBox.classList.remove('checked'); // Remove the background of the checkbox to show it's no longer checked
+
+    setTimeout(function () {
+      // Start a timer to remove the animation / the event handler
+      checkDot.setAttribute('style', 'left: 0px;'); // Set the dot to be where the animation will end
+
+      checkDot.classList.remove('animateBtn-uncheck'); // Stop the animation
+
+      containerDiv.childNodes.forEach(function (node) {
+        if (node.tagName && node.tagName.toLowerCase() === 'input') {
+          // Find the input we created and set it to the unchecked value (or blank)
+          containerDiv.dataset.uncheckedValue ? node.value = containerDiv.dataset.uncheckedValue : node.value = '';
+        }
+      });
+      checkDot.addEventListener('click', checkBox); // Add the checkbox event listener
+
+      checkBox.addEventListener('click', checkDot);
+      checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
+
+      checkBox.removeEventListener('click', uncheckBox);
+    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+  };
+
+  document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
+    return el.addEventListener('click', checkBox);
+  });
+}
+
+;
+
+function $O87o$var$_toConsumableArray(arr) {
+  return $O87o$var$_arrayWithoutHoles(arr) || $O87o$var$_iterableToArray(arr) || $O87o$var$_nonIterableSpread();
+}
+
+function $O87o$var$_nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function $O87o$var$_iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function $O87o$var$_arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+function $O87o$export$default(selector) {
+  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  document.querySelectorAll(selector).forEach(function (arrayOfSwitches) {
+    var tempArrayID = arrayOfSwitches.id;
+    $wiIP$export$createLabel(arrayOfSwitches, tempArrayID, config.labelClass ? config.labelClass : null);
+    var hiddenInput = $wiIP$export$createInput(arrayOfSwitches, tempArrayID);
+    arrayOfSwitches.insertBefore(hiddenInput, arrayOfSwitches.children[1]);
+    arrayOfSwitches.id = "arrayed_".concat(tempArrayID);
+    arrayOfSwitches.childNodes.forEach(function (childEl) {
+      if (childEl.classList && childEl.classList.contains('arrayChild')) {
+        var tempChildID = childEl.id;
+        var pseudoLabel = document.createElement('span');
+        pseudoLabel.innerText = childEl.dataset.label;
+
+        if (config.arrayLabelClass) {
+          var _pseudoLabel$classLis;
+
+          (_pseudoLabel$classLis = pseudoLabel.classList).add.apply(_pseudoLabel$classLis, $O87o$var$_toConsumableArray(config.arrayLabelClass));
+        }
+
+        childEl.append(pseudoLabel);
+        $wiIP$export$createSwitch(childEl, tempChildID);
+      }
+    });
+  });
+
+  var checkBox = function checkBox(e) {
+    var _getDotBoxAndContaine = $wiIP$export$getDotBoxAndContainer(e),
+        checkDot = _getDotBoxAndContaine.checkDot,
+        checkBox = _getDotBoxAndContaine.checkBox,
+        containerDiv = _getDotBoxAndContaine.containerDiv;
+
+    var arrayContainer = containerDiv.parentElement;
+    checkDot.classList.add('animateBtn-check'); // Animate the dot (To checked)
+
+    checkBox.classList.add('checked'); // Change the background of the checkbox to show it's checked
+
+    setTimeout(function () {
+      // Start a timer to remove the animation / the event handler
+      checkDot.setAttribute('style', 'left: 16px;'); // Set the dot to be where the animation will end
+
+      checkDot.classList.remove('animateBtn-check'); // Stop the animation
+
+      arrayContainer.childNodes.forEach(function (node) {
+        if (node.tagName && node.tagName.toLowerCase() === 'input') {
+          // Find the input we created and set it to the check value
+          var valueArray = node.value ? JSON.parse(node.value) : [];
+
+          if (!valueArray.includes(containerDiv.dataset.checkedValue)) {
+            valueArray.push(containerDiv.dataset.checkedValue);
+            node.value = JSON.stringify(valueArray);
+          }
+        }
+      });
+      checkDot.addEventListener('click', uncheckBox); // Add the uncheckBox event listener
+
+      checkBox.addEventListener('click', uncheckBox);
+      checkDot.removeEventListener('click', checkBox); // Remove this event listener
+
+      checkBox.removeEventListener('click', checkBox);
+    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+  };
+
+  var uncheckBox = function uncheckBox(e) {
+    var _getDotBoxAndContaine2 = $wiIP$export$getDotBoxAndContainer(e),
+        checkDot = _getDotBoxAndContaine2.checkDot,
+        checkBox = _getDotBoxAndContaine2.checkBox,
+        containerDiv = _getDotBoxAndContaine2.containerDiv;
+
+    var arrayContainer = containerDiv.parentElement;
+    checkDot.classList.add('animateBtn-uncheck'); // Animate the dot (to unchecked)
+
+    checkBox.classList.remove('checked'); // Remove the background of the checkbox to show it's no longer checked
+
+    setTimeout(function () {
+      // Start a timer to remove the animation / the event handler
+      checkDot.setAttribute('style', 'left: 0px;'); // Set the dot to be where the animation will end
+
+      checkDot.classList.remove('animateBtn-uncheck'); // Stop the animation
+
+      arrayContainer.childNodes.forEach(function (node) {
+        if (node.tagName && node.tagName.toLowerCase() === 'input') {
+          // Find the input we created and set it to the unchecked value (or blank)
+          var valueArray = JSON.parse(node.value);
+
+          if (valueArray.includes(containerDiv.dataset.checkedValue)) {
+            valueArray.splice(valueArray.indexOf(containerDiv.dataset.checkedValue), 1);
+            node.value = JSON.stringify(valueArray);
+          }
+        }
+      });
+      checkDot.addEventListener('click', checkBox); // Add the checkbox event listener
+
+      checkBox.addEventListener('click', checkDot);
+      checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
+
+      checkBox.removeEventListener('click', uncheckBox);
+    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+  };
+
+  document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
+    return el.addEventListener('click', checkBox);
+  });
+}
+
+;
+
+$HuqN$exports = function binBoxInit() {
+  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var arrayContainerSelector = config.arrayBoxSelector ? config.arrayBoxSelector : '.arrayBox';
+  var binaryBoxSelector = config.checkBoxSelector ? config.checkBoxSelector : '.binaryBox';
+  $wiIP$export$addStylesheet(config);
+
+  if (document.querySelector(arrayContainerSelector)) {
+    $O87o$export$default(arrayContainerSelector, config);
+  }
+
+  if (document.querySelector(binaryBoxSelector)) {
+    $mBHV$export$default(binaryBoxSelector, config);
+  }
+};
+
+if (typeof exports === "object" && typeof module !== "undefined") {
+  // CommonJS
+  module.exports = $HuqN$exports;
+} else if (typeof define === "function" && define.amd) {
+  // RequireJS
+  define(function () {
+    return $HuqN$exports;
+  });
+} else {
+  // <script>
+  this["binBoxInit"] = $HuqN$exports;
+}
+})();

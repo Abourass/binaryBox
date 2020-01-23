@@ -20,7 +20,7 @@ export default function BinaryBox(selector, config = {}){
     checkBox.classList.add('checked');                                // Change the background of the checkbox to show it's checked
 
     setTimeout(()=> {                                         // Start a timer to remove the animation / the event handler
-      checkDot.setAttribute('style', 'left: 16px;');  // Set the dot to be where the animation will end
+      checkDot.setAttribute('style', `left: ${((config.switchWidth * 2) + 2) || '16'}px;`);  // Set the dot to be where the animation will end
       checkDot.classList.remove('animateBtn-check');          // Stop the animation
       containerDiv.childNodes.forEach(node => {
         if (node.tagName && node.tagName.toLowerCase() === 'input'){                 // Find the input we created and set it to the check value
