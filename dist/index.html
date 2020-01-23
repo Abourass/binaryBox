@@ -5,9 +5,10 @@
   <title>BinBox</title>
   <style>
     .label { padding-right: .2rem}
-    .pseudoLabel {font-weight: 300; font-family: "3270Medium Nerd Font"}
+    .pseudoLabel {font-weight: 300;}
     .arrayChild, .form-input {display: inline-flex;}
   </style>
+
 </head>
 <body>
 <div id="typesOfAnimal" class="arrayBox" data-label="What type of animals do you like?">
@@ -29,8 +30,8 @@
 <div id="isAlive" class="binaryBox" data-checked-value="true" data-unchecked-value="false" data-label="You are alive?"></div>
 <div id="isRobotic" class="binaryBox" data-checked-value="true" data-unchecked-value="false" data-label="You are a cyborg?"></div>
 </body>
-<script type="module">
-  import binBoxInit from './src/binBoxInit.js';
+<script src="./binaryBoxBundle-dist.js"></script>
+<script>
   binBoxInit({
     labelClass: 'label',
     arrayLabelClass: 'pseudoLabel'

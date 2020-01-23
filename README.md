@@ -45,8 +45,8 @@
 ## Initialize
 
 ```html
-<script type="module">
-  import binBoxInit from './src/binBoxInit.js';
+<script src="./binaryBoxBundle-dist.js"></script>
+<script>
   binBoxInit({
     labelClass: 'label',
     arrayLabelClass: 'pseudoLabel'
@@ -57,9 +57,9 @@
 ## Config
 
 ```html
-<script type="module">
-  import binBoxInit from './src/binBoxInit.js';
-  const config = {
+<script src="./binaryBoxBundle-dist.js"></script>
+<script>
+const config = {
     background: '#00a28a',
     button: '#fff',
     animationDuration: '.6s',
