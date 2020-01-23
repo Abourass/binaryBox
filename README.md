@@ -30,7 +30,7 @@
 ```html
 <script src="src/binaryBox.js"></script>
 <script>
-  new BinaryCheck().init();
+  new BinaryBox().init();
 </script>
 ```
 
