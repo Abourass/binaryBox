@@ -366,6 +366,14 @@ function $O87o$export$default(selector) {
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
     return el.addEventListener('click', checkBox);
   });
+  setInterval(function () {
+    document.querySelectorAll('.checked').forEach(function (el) {
+      el.removeEventListener('click', checkBox);
+      el.childNodes[0].removeEventListener('click', checkBox);
+      el.addEventListener('click', uncheckBox);
+      el.childNodes[0].addEventListener('click', uncheckBox);
+    });
+  }, 300);
 }
 
 ;

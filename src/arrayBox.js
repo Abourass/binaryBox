@@ -65,7 +65,7 @@ export default function ArrayBox(selector, config = {}){
         if (node.tagName && node.tagName.toLowerCase() === 'input'){// Find the input we created and set it to the unchecked value (or blank)
           let valueArray = JSON.parse(node.value);
           if(valueArray.includes(containerDiv.dataset.checkedValue)){
-            valueArray.splice(valueArray.indexOf(containerDiv.dataset.checkedValue), 1)
+            valueArray.splice(valueArray.indexOf(containerDiv.dataset.checkedValue), 1);
             node.value = JSON.stringify(valueArray);
           }
         }
@@ -79,4 +79,15 @@ export default function ArrayBox(selector, config = {}){
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));
+
+  setInterval(() => {
+    document.querySelectorAll('.checked').forEach(el =>{
+      el.removeEventListener('click', checkBox);
+      el.childNodes[0].removeEventListener('click', checkBox);
+
+      el.addEventListener('click', uncheckBox);
+      el.childNodes[0].addEventListener('click', uncheckBox);
+    });
+  }, 300)
+
 };
