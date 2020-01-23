@@ -3,7 +3,7 @@ class BinaryBox {
     if (selector == null){selector = '.binaryBox'}
     const elements = document.querySelectorAll(selector);
 
-    const calculateMilliseconds = (seconds) => {
+    const calculateMilliseconds = (seconds, addMS = null) => {
       const secs = seconds.substring(0, seconds.length - 1);
       let ms;
       switch (secs[0]){
@@ -24,23 +24,28 @@ class BinaryBox {
           }
         }
       }
-      return ms > 40 ? ms - 40 : ms;
+      if (addMS){ms += addMS}
+      return ms > 50 ? ms - 50 : ms;
     };
-
-    let styleNode = document.createElement('style');
-    styleNode.textContent = `
+    const addStylesheet = () => {
+      let styleNode = document.createElement('style');
+      styleNode.textContent = `
     .binaryCheckContainer {
-      background: ${config.background || '#000000'};
-      border-radius: .55rem;
+      background: ${config.background || '#eaeaeb'};
+      border: 1px solid ${config.background || '#eaeaeb'};
+      margin-bottom: 0;
+      border-radius: 1rem;
+      vertical-align: middle;
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 34px;
-      height: 17px;
+      height: 15px;
+      cursor: pointer;
     }
     
     .binaryBtn {
-      background: ${config.button || '#d62536'};
+      background: ${config.button || '#fff'};
       border-radius: .65rem;
       width: 16px;
       height: 15px;
@@ -48,16 +53,22 @@ class BinaryBox {
       display: block;
       margin-left: 1px;
       margin-right: 1px;
+      transition: all ${calculateMilliseconds(config.animationDuration, 50 || 850)}ms linear;
     }
     
     @keyframes slideBtn-right {
       from {left: 0px;}
-      to {left: 15.55px;}
+      to {left: 16px;}
     }
     
     @keyframes slideBtn-left {
-      from {left: 15.55px;}
+      from {left: 16px;}
       to {left: 0px;}
+    }
+    
+    .checked {
+      background: ${config.checkedColor || '#00a28a !important'};
+      border: 1px solid ${config.checkedColor || '#00a28a !important'};
     }
     
     .animateBtn-check {
@@ -74,7 +85,20 @@ class BinaryBox {
       -webkit-animation-duration: ${config.animationDuration || '1s'};
     }
     `;
-    document.getElementsByTagName('head')[0].appendChild(styleNode);
+      document.getElementsByTagName('head')[0].appendChild(styleNode);
+    };
+    const getDotBoxAndContainer = (e) => {
+      let checkDot, checkBox;
+      if (e.currentTarget.tagName.toLowerCase() === 'span'){
+        checkDot = e.currentTarget;
+        checkBox = checkDot.parentElement
+      } else {
+        checkBox = e.currentTarget;
+        checkDot = checkBox.childNodes[0];
+      }
+      const containerDiv = checkBox.parentElement;
+      return {checkDot, checkBox, containerDiv}
+    };
 
     elements.forEach((el) => {
       const tempID = el.id;
@@ -108,40 +132,54 @@ class BinaryBox {
     });
 
     const checkBox = (e) => {
-      const targetBox = e.currentTarget;
-      targetBox.classList.add('animateBtn-check');
-      setTimeout(()=> {
-        targetBox.setAttribute('style', 'left: 15.55px;');
-        targetBox.classList.remove('animateBtn-check');
-        targetBox.parentElement.parentElement.childNodes.forEach(node => {
-          if (node.tagName.toLowerCase() === 'input'){
-            node.value = targetBox.parentElement.parentElement.dataset.checkedValue;
+      const {checkDot, checkBox, containerDiv} = getDotBoxAndContainer(e);
+
+      checkDot.classList.add('animateBtn-check');                       // Animate the dot (To checked)
+      checkBox.classList.add('checked');                                // Change the background of the checkbox to show it's checked
+
+      setTimeout(()=> {                                         // Start a timer to remove the animation / the event handler
+        checkDot.setAttribute('style', 'left: 16px;');  // Set the dot to be where the animation will end
+        checkDot.classList.remove('animateBtn-check');          // Stop the animation
+        containerDiv.childNodes.forEach(node => {
+          if (node.tagName.toLowerCase() === 'input'){                 // Find the input we created and set it to the check value
+            node.value = containerDiv.dataset.checkedValue;
           }
         });
-        targetBox.addEventListener('click', uncheckBox);
-        targetBox.removeEventListener('click', checkBox);
+        checkDot.addEventListener('click', uncheckBox);   // Add the uncheckBox event listener
+        checkBox.addEventListener('click', uncheckBox);
+
+        checkDot.removeEventListener('click', checkBox); // Remove this event listener
+        checkBox.removeEventListener('click', checkBox);
       }, calculateMilliseconds(config.animationDuration || 850))
     };
 
     const uncheckBox = (e) => {
-      const targetBox = e.currentTarget;
-      targetBox.classList.add('animateBtn-uncheck');
-      setTimeout(()=> {
-        targetBox.setAttribute('style', 'left: 0px;');
-        targetBox.classList.remove('animateBtn-uncheck');
-        targetBox.parentElement.parentElement.childNodes.forEach(node => {
-          if (node.tagName.toLowerCase() === 'input'){
-            targetBox.parentElement.parentElement.dataset.uncheckedValue
-              ? node.value = targetBox.parentElement.parentElement.dataset.uncheckedValue
+      const {checkDot, checkBox, containerDiv} = getDotBoxAndContainer(e);
+
+      checkDot.classList.add('animateBtn-uncheck');                    // Animate the dot (to unchecked)
+      checkBox.classList.remove('checked');                     // Remove the background of the checkbox to show it's no longer checked
+
+      setTimeout(()=> {                                        // Start a timer to remove the animation / the event handler
+        checkDot.setAttribute('style', 'left: 0px;');     // Set the dot to be where the animation will end
+        checkDot.classList.remove('animateBtn-uncheck');       // Stop the animation
+        containerDiv.childNodes.forEach(node => {
+          if (node.tagName.toLowerCase() === 'input'){                // Find the input we created and set it to the unchecked value (or blank)
+            containerDiv.dataset.uncheckedValue
+              ? node.value = containerDiv.dataset.uncheckedValue
               : node.value = ''
           }
         });
-        targetBox.addEventListener('click', checkBox);
-        targetBox.removeEventListener('click', uncheckBox);
+        checkDot.addEventListener('click', checkBox);       // Add the checkbox event listener
+        checkBox.addEventListener('click', checkDot);
+
+        checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
+        checkBox.removeEventListener('click', uncheckBox)
       }, calculateMilliseconds(config.animationDuration || 850))
     };
 
-    document.querySelector('.binaryBtn').addEventListener('click', checkBox)
+    addStylesheet();
+    document.querySelector('.binaryBtn').addEventListener('click', checkBox);
+    document.querySelector('.binaryCheckContainer').addEventListener('click', checkBox);
   };
 }
 
