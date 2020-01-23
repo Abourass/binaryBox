@@ -15,7 +15,9 @@ export default function ArrayBox(selector, config = {}){
 
         const pseudoLabel = document.createElement('span');
         pseudoLabel.innerText = childEl.dataset.label;
-        if(config.arrayLabelClass){ pseudoLabel.classList.add(config.arrayLabelClass)}
+        if(config.arrayLabelClass){
+          pseudoLabel.classList.add(...config.arrayLabelClass)
+        }
         childEl.append(pseudoLabel);
         createSwitch(childEl, tempChildID);
       }

@@ -97,7 +97,7 @@ export const createLabel = (el, forID, labelClass = null) =>{
     const hiddenLabel = document.createElement('label');
     hiddenLabel.setAttribute('for', `${forID}`);
     hiddenLabel.textContent = el.dataset.label;
-    if (labelClass){hiddenLabel.classList.add(labelClass)}
+    if (labelClass){hiddenLabel.classList.add(...labelClass)}
     el.prepend(hiddenLabel)
   }
 };
