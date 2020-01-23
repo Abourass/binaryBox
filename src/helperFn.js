@@ -113,16 +113,20 @@ export const createInput = (el, tempID) => {
   return hiddenInput;
 };
 
-export const createSwitch = (el, tempID, inputEl = null) => {
-  const checkDiv = document.createElement('div'),
-        btnSpan = document.createElement('span');
-  checkDiv.classList.add('binarySwitchContainer');
-  btnSpan.classList.add('binaryBtn');
+export const createSwitch = (el, tempID, inputEl = null, checked = false) => {
+  const checkBox = document.createElement('div'),
+        checkDot = document.createElement('span');
+  checkBox.classList.add('binarySwitchContainer');
+  if (checked){
+    checkBox.classList.add('checked');
+    checkDot.setAttribute('style', `left: 16px;`)
+  }
+  checkDot.classList.add('binaryBtn');
 
   if(inputEl){el.append(inputEl)}
   el.id = `grabbed_${tempID}`;
-  checkDiv.appendChild(btnSpan);
-  el.appendChild(checkDiv)
+  checkBox.appendChild(checkDot);
+  el.appendChild(checkBox)
 };
 
 export default {

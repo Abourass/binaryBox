@@ -19,7 +19,7 @@ export default function ArrayBox(selector, config = {}){
           pseudoLabel.classList.add(...config.arrayLabelClass)
         }
         childEl.append(pseudoLabel);
-        createSwitch(childEl, tempChildID);
+        createSwitch(childEl, tempChildID, null, childEl.dataset.checked ? childEl.dataset.checked : null);
       }
     });
   });

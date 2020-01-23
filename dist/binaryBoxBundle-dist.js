@@ -143,18 +143,25 @@ var $wiIP$export$createInput = function createInput(el, tempID) {
 
 var $wiIP$export$createSwitch = function createSwitch(el, tempID) {
   var inputEl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var checkDiv = document.createElement('div'),
-      btnSpan = document.createElement('span');
-  checkDiv.classList.add('binarySwitchContainer');
-  btnSpan.classList.add('binaryBtn');
+  var checked = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var checkBox = document.createElement('div'),
+      checkDot = document.createElement('span');
+  checkBox.classList.add('binarySwitchContainer');
+
+  if (checked) {
+    checkBox.classList.add('checked');
+    checkDot.setAttribute('style', "left: 16px;");
+  }
+
+  checkDot.classList.add('binaryBtn');
 
   if (inputEl) {
     el.append(inputEl);
   }
 
   el.id = "grabbed_".concat(tempID);
-  checkDiv.appendChild(btnSpan);
-  el.appendChild(checkDiv);
+  checkBox.appendChild(checkDot);
+  el.appendChild(checkBox);
 };
 
 function $mBHV$export$default(selector) {
@@ -277,7 +284,7 @@ function $O87o$export$default(selector) {
         }
 
         childEl.append(pseudoLabel);
-        $wiIP$export$createSwitch(childEl, tempChildID);
+        $wiIP$export$createSwitch(childEl, tempChildID, null, childEl.dataset.checked ? childEl.dataset.checked : null);
       }
     });
   });
