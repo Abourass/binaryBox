@@ -45,7 +45,7 @@
     animationDuration: '.6s',
     labelClass: 'label'
 }
-  new BinaryCheck().init(null, config);
+  new BinaryBox().init(null, config);
 </script>
 ```
 
