@@ -45,7 +45,7 @@
 ## Initialize
 
 ```html
-<script src="./binaryBoxBundle-dist.js"></script>
+<script src="./binaryBox.bundle.js"></script>
 <script>
   binBoxInit({
     labelClass: 'label',
@@ -57,7 +57,7 @@
 ## Config
 
 ```html
-<script src="./binaryBoxBundle-dist.js"></script>
+<script src="./binaryBox.bundle.js"></script>
 <script>
 const config = {
     background: '#00a28a',
