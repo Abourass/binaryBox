@@ -10,4 +10,13 @@ module.exports = function binBoxInit(config = {}){
 
   if(document.querySelector(arrayContainerSelector)){ArrayBox(arrayContainerSelector, config);}
   if (document.querySelector(binaryBoxSelector)){BinaryBox(binaryBoxSelector, config)}
+
+  setTimeout(() => {
+    document.querySelectorAll('.is-checked').forEach(el => {
+      el.classList.remove('is-checked');
+      el.dispatchEvent(
+        new MouseEvent('click', {view: window, bubbles: true, cancelable: false,})
+      );
+    });
+  }, 100)
 };

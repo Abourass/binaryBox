@@ -365,16 +365,6 @@ function $O87o$export$default(selector) {
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
     return el.addEventListener('click', checkBox);
   });
-  setTimeout(function () {
-    document.querySelectorAll('.is-checked').forEach(function (el) {
-      el.classList.remove('is-checked');
-      el.dispatchEvent(new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: false
-      }));
-    });
-  }, 100);
 }
 
 ;
@@ -392,6 +382,17 @@ $HuqN$exports = function binBoxInit() {
   if (document.querySelector(binaryBoxSelector)) {
     $mBHV$export$default(binaryBoxSelector, config);
   }
+
+  setTimeout(function () {
+    document.querySelectorAll('.is-checked').forEach(function (el) {
+      el.classList.remove('is-checked');
+      el.dispatchEvent(new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: false
+      }));
+    });
+  }, 100);
 };
 
 if (typeof exports === "object" && typeof module !== "undefined") {

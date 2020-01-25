@@ -11,7 +11,7 @@
 
 > Tired of checkboxes not returning values when unchecked? This is the library for you
 
-## Include
+## How to Use
 
 ```html
 <body>

@@ -89,14 +89,4 @@ export default function ArrayBox(selector, config = {}){
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));
-
-  setTimeout(() => {
-    document.querySelectorAll('.is-checked').forEach(el => {
-      el.classList.remove('is-checked');
-      el.dispatchEvent(
-        new MouseEvent('click', {view: window, bubbles: true, cancelable: false,})
-      );
-    });
-  }, 100)
-
 };
