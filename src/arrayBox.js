@@ -90,19 +90,12 @@ export default function ArrayBox(selector, config = {}){
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));
 
-  setInterval(() => {
-    document.querySelectorAll('.checked').forEach(el => {
-      const event = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
-      const cancelled = !el.dispatchEvent(event);
-      if (cancelled){
-        console.log('Prevent default stopped our click action')
-      } else {
-        console.log('Working as expected')
-      }
+  setTimeout(() => {
+    document.querySelectorAll('.is-checked').forEach(el => {
+      el.classList.remove('is-checked');
+      el.dispatchEvent(
+        new MouseEvent('click', {view: window, bubbles: true, cancelable: false,})
+      );
     });
   }, 100)
 

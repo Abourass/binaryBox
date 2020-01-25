@@ -149,8 +149,7 @@ var $wiIP$export$createSwitch = function createSwitch(el, tempID) {
   checkBox.classList.add('binarySwitchContainer');
 
   if (checked) {
-    checkBox.classList.add('checked');
-    checkDot.setAttribute('style', "left: 16px;");
+    checkBox.classList.add('is-checked');
   }
 
   checkDot.classList.add('binaryBtn');
@@ -366,20 +365,14 @@ function $O87o$export$default(selector) {
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
     return el.addEventListener('click', checkBox);
   });
-  setInterval(function () {
-    document.querySelectorAll('.checked').forEach(function (el) {
-      var event = new MouseEvent('click', {
+  setTimeout(function () {
+    document.querySelectorAll('.is-checked').forEach(function (el) {
+      el.classList.remove('is-checked');
+      el.dispatchEvent(new MouseEvent('click', {
         view: window,
         bubbles: true,
-        cancelable: true
-      });
-      var cancelled = !el.dispatchEvent(event);
-
-      if (cancelled) {
-        console.log('Prevent default stopped our click action');
-      } else {
-        console.log('Working as expected');
-      }
+        cancelable: false
+      }));
     });
   }, 100);
 }
@@ -409,5 +402,8 @@ if (typeof exports === "object" && typeof module !== "undefined") {
   define(function () {
     return $HuqN$exports;
   });
+} else {
+  // <script>
+  this["binBoxInit"] = $HuqN$exports;
 }
 })();

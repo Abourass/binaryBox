@@ -122,8 +122,7 @@ export const createSwitch = (el, tempID, inputEl = null, checked = false) => {
         checkDot = document.createElement('span');
   checkBox.classList.add('binarySwitchContainer');
   if (checked){
-    checkBox.classList.add('checked');
-    checkDot.setAttribute('style', `left: 16px;`)
+    checkBox.classList.add('is-checked');
   }
   checkDot.classList.add('binaryBtn');
 
