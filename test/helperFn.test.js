@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const {
   calculateMilliseconds,
   calculateMillisecondsWithAnimationOffset
-} = require('../dist/helperFn.common');
+} = require('./helperFn.common');
 
 describe('calculateMilliseconds', () => {
   describe('with seconds', () => {
