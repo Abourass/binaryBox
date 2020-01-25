@@ -1,4 +1,4 @@
-export const calculateMilliseconds = (seconds, addMS = null) => {
+export const calculateMilliseconds = (seconds) => {
   const secs = seconds.substring(0, seconds.length - 1);
   let ms;
   switch (secs[0]){
@@ -19,8 +19,12 @@ export const calculateMilliseconds = (seconds, addMS = null) => {
       }
     }
   }
-  if (addMS){ms += addMS}
-  return ms > 50 ? ms - 50 : ms;
+  return ms;
+};
+
+export const calculateMillisecondsWithAnimationOffset = (milliseconds) => {
+  const ms = calculateMilliseconds(milliseconds);
+  return (ms > 55) ? (ms - 50) : ms
 };
 
 export const getDotBoxAndContainer = (e) => {
@@ -131,6 +135,7 @@ export const createSwitch = (el, tempID, inputEl = null, checked = false) => {
 
 export default {
   calculateMilliseconds,
+  calculateMillisecondsWithAnimationOffset,
   getDotBoxAndContainer,
   addStylesheet,
   createLabel,

@@ -1,4 +1,10 @@
-import {createLabel, createInput, createSwitch, calculateMilliseconds, getDotBoxAndContainer} from './helperFn.js';
+import {
+  createLabel,
+  createInput,
+  createSwitch,
+  getDotBoxAndContainer,
+  calculateMillisecondsWithAnimationOffset,
+} from './helperFn.js';
 
 export default function ArrayBox(selector, config = {}){
   document.querySelectorAll(selector).forEach((arrayOfSwitches) => {
@@ -48,7 +54,9 @@ export default function ArrayBox(selector, config = {}){
 
       checkDot.removeEventListener('click', checkBox); // Remove this event listener
       checkBox.removeEventListener('click', checkBox);
-    }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
+    }, config.animationDuration
+      ? calculateMillisecondsWithAnimationOffset(config.animationDuration)
+      : 250)
   };
 
   const uncheckBox = (e) => {
@@ -75,7 +83,9 @@ export default function ArrayBox(selector, config = {}){
 
       checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
       checkBox.removeEventListener('click', uncheckBox)
-    }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
+    }, config.animationDuration
+      ? calculateMillisecondsWithAnimationOffset(config.animationDuration)
+      : 250)
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));

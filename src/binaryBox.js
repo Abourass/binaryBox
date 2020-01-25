@@ -1,9 +1,9 @@
 import {
-  calculateMilliseconds,
-  getDotBoxAndContainer,
   createLabel,
   createInput,
-  createSwitch
+  createSwitch,
+  getDotBoxAndContainer,
+  calculateMillisecondsWithAnimationOffset
 } from './helperFn.js'
 
 export default function BinaryBox(selector, config = {}){
@@ -32,7 +32,9 @@ export default function BinaryBox(selector, config = {}){
 
       checkDot.removeEventListener('click', checkBox); // Remove this event listener
       checkBox.removeEventListener('click', checkBox);
-    }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
+    }, config.animationDuration
+      ? calculateMillisecondsWithAnimationOffset(config.animationDuration)
+      : 250)
   };
 
   const uncheckBox = (e) => {
@@ -56,7 +58,9 @@ export default function BinaryBox(selector, config = {}){
 
       checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
       checkBox.removeEventListener('click', uncheckBox)
-    }, config.animationDuration ? calculateMilliseconds(config.animationDuration) : 250)
+    }, config.animationDuration
+      ? calculateMillisecondsWithAnimationOffset(config.animationDuration)
+      : 250)
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));
