@@ -91,13 +91,19 @@ export default function ArrayBox(selector, config = {}){
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(el => el.addEventListener('click', checkBox));
 
   setInterval(() => {
-    document.querySelectorAll('.checked').forEach(el =>{
-      el.removeEventListener('click', checkBox);
-      el.childNodes[0].removeEventListener('click', checkBox);
-
-      el.addEventListener('click', uncheckBox);
-      el.childNodes[0].addEventListener('click', uncheckBox);
+    document.querySelectorAll('.checked').forEach(el => {
+      const event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      const cancelled = !el.dispatchEvent(event);
+      if (cancelled){
+        console.log('Prevent default stopped our click action')
+      } else {
+        console.log('Working as expected')
+      }
     });
-  }, 300)
+  }, 100)
 
 };

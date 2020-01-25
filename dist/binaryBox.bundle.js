@@ -368,12 +368,20 @@ function $O87o$export$default(selector) {
   });
   setInterval(function () {
     document.querySelectorAll('.checked').forEach(function (el) {
-      el.removeEventListener('click', checkBox);
-      el.childNodes[0].removeEventListener('click', checkBox);
-      el.addEventListener('click', uncheckBox);
-      el.childNodes[0].addEventListener('click', uncheckBox);
+      var event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+      var cancelled = !el.dispatchEvent(event);
+
+      if (cancelled) {
+        console.log('Prevent default stopped our click action');
+      } else {
+        console.log('Working as expected');
+      }
     });
-  }, 300);
+  }, 100);
 }
 
 ;
@@ -401,8 +409,5 @@ if (typeof exports === "object" && typeof module !== "undefined") {
   define(function () {
     return $HuqN$exports;
   });
-} else {
-  // <script>
-  this["binBoxInit"] = $HuqN$exports;
 }
 })();
