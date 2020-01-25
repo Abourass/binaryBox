@@ -25,7 +25,6 @@ function $wiIP$var$_arrayWithoutHoles(arr) {
 }
 
 var $wiIP$export$calculateMilliseconds = function calculateMilliseconds(seconds) {
-  var addMS = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   var secs = seconds.substring(0, seconds.length - 1);
   var ms;
 
@@ -79,11 +78,12 @@ var $wiIP$export$calculateMilliseconds = function calculateMilliseconds(seconds)
       }
   }
 
-  if (addMS) {
-    ms += addMS;
-  }
+  return ms;
+};
 
-  return ms > 50 ? ms - 50 : ms;
+var $wiIP$export$calculateMillisecondsWithAnimationOffset = function calculateMillisecondsWithAnimationOffset(milliseconds) {
+  var ms = $wiIP$export$calculateMilliseconds(milliseconds);
+  return ms > 55 ? ms - 50 : ms;
 };
 
 var $wiIP$export$getDotBoxAndContainer = function getDotBoxAndContainer(e) {
@@ -200,7 +200,7 @@ function $mBHV$export$default(selector) {
       checkDot.removeEventListener('click', checkBox); // Remove this event listener
 
       checkBox.removeEventListener('click', checkBox);
-    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+    }, config.animationDuration ? $wiIP$export$calculateMillisecondsWithAnimationOffset(config.animationDuration) : 250);
   };
 
   var uncheckBox = function uncheckBox(e) {
@@ -231,7 +231,7 @@ function $mBHV$export$default(selector) {
       checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
 
       checkBox.removeEventListener('click', uncheckBox);
-    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+    }, config.animationDuration ? $wiIP$export$calculateMillisecondsWithAnimationOffset(config.animationDuration) : 250);
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
@@ -323,7 +323,7 @@ function $O87o$export$default(selector) {
       checkDot.removeEventListener('click', checkBox); // Remove this event listener
 
       checkBox.removeEventListener('click', checkBox);
-    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+    }, config.animationDuration ? $wiIP$export$calculateMillisecondsWithAnimationOffset(config.animationDuration) : 250);
   };
 
   var uncheckBox = function uncheckBox(e) {
@@ -360,7 +360,7 @@ function $O87o$export$default(selector) {
       checkDot.removeEventListener('click', uncheckBox); // Remove this event listener
 
       checkBox.removeEventListener('click', uncheckBox);
-    }, config.animationDuration ? $wiIP$export$calculateMilliseconds(config.animationDuration) : 250);
+    }, config.animationDuration ? $wiIP$export$calculateMillisecondsWithAnimationOffset(config.animationDuration) : 250);
   };
 
   document.querySelectorAll('.binaryBtn, .binarySwitchContainer').forEach(function (el) {
