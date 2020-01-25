@@ -14,8 +14,5 @@
   },
   "devDependencies": {
     "chai": "^4.2.0"
-  },
-  "dependencies": {
-    "np": "^5.2.1"
   }
 }
