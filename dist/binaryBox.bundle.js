@@ -168,7 +168,7 @@ function $mBHV$export$default(selector) {
   document.querySelectorAll(selector).forEach(function (el) {
     var tempID = el.id;
     $wiIP$export$createLabel(el, tempID, config.labelClass ? config.labelClass : null);
-    $wiIP$export$createSwitch(el, tempID, $wiIP$export$createInput(el, tempID));
+    $wiIP$export$createSwitch(el, tempID, $wiIP$export$createInput(el, tempID), el.dataset.checked ? el.dataset.checked : null);
   });
 
   var checkBox = function checkBox(e) {

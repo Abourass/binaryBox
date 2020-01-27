@@ -10,7 +10,7 @@ export default function BinaryBox(selector, config = {}){
   document.querySelectorAll(selector).forEach((el) => {
     const tempID = el.id;
     createLabel(el, tempID, config.labelClass ? config.labelClass : null);
-    createSwitch(el, tempID, createInput(el, tempID));
+    createSwitch(el, tempID, createInput(el, tempID), el.dataset.checked ? el.dataset.checked : null);
   });
 
   const checkBox = (e) => {
