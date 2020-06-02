@@ -52,6 +52,11 @@ export const addStylesheet = (config) => {
       cursor: pointer;
     }
     
+    .binarySwitchContainer:focus {
+      border: 2px solid #25202085 !important;
+      outline: none !important;
+    }
+    
     .binaryBtn {
       background: ${config.button || '#fff'};
       border-radius: ${config.dotRadius || '.65rem'};
@@ -101,7 +106,7 @@ export const createLabel = (el, forID, labelClass = null) =>{
     const hiddenLabel = document.createElement('label');
     hiddenLabel.setAttribute('for', `${forID}`);
     hiddenLabel.textContent = el.dataset.label;
-    if (labelClass){hiddenLabel.classList.add(...labelClass)}
+    if (labelClass) hiddenLabel.classList.add(...labelClass);
     el.prepend(hiddenLabel)
   }
 };
@@ -111,22 +116,21 @@ export const createInput = (el, tempID) => {
   hiddenInput.type = 'hidden';
   hiddenInput.name = el.id;
   hiddenInput.id = tempID;
-  if (el.dataset.uncheckedValue){
-    hiddenInput.value = el.dataset.uncheckedValue
-  }
+  if (el.dataset.uncheckedValue) hiddenInput.value = el.dataset.uncheckedValue;
   return hiddenInput;
 };
+
+export const correctKeyOrClick = e => e.type === 'click' || e.key === 'Enter' || e.code === 'Space';
 
 export const createSwitch = (el, tempID, inputEl = null, checked = false) => {
   const checkBox = document.createElement('div'),
         checkDot = document.createElement('span');
   checkBox.classList.add('binarySwitchContainer');
-  if (checked){
-    checkBox.classList.add('is-checked');
-  }
+  checkBox.setAttribute('tabindex', '0')
+  if (checked) checkBox.classList.add('is-checked');
   checkDot.classList.add('binaryBtn');
 
-  if(inputEl){el.append(inputEl)}
+  if (inputEl) el.append(inputEl);
   el.id = `grabbed_${tempID}`;
   checkBox.appendChild(checkDot);
   el.appendChild(checkBox)
@@ -139,5 +143,6 @@ export default {
   addStylesheet,
   createLabel,
   createInput,
-  createSwitch
+  createSwitch,
+  correctKeyOrClick
 }
