@@ -11,8 +11,5 @@
   "license": "MIT",
   "scripts": {
     "test": "npx mocha test/helperFn.test.js"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0"
   }
 }
